@@ -1,0 +1,101 @@
+﻿@page "/todos"
+
+@using TodoList.Data
+@using Microsoft.EntityFrameworkCore
+@inject IDbContextFactory<DatabaseContext> ContextFactory
+
+<PageTitle>Todos</PageTitle>
+
+<h1>Todos</h1>
+
+<div class="my-4">
+    <EditForm Model="@newTodo" OnValidSubmit="@HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="form-group">
+            <label for="title">Title</label>
+            <InputText @bind-Value="@newTodo.Title" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </EditForm>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Done</th>
+            <th>Title</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var todo in todos)
+        {
+            <tr>
+                <td>
+                    <input class="form-check-input" checked="@todo.IsDone" type="checkbox" @onchange="@(e => ToggleDone(todo, e))" />
+                </td>
+                <td>
+                    <span class="@((todo.IsDone)? "text-decoration-line-through" : "done")">
+                        @todo.Title
+                    </span>
+                </td>
+                <td>
+                    <a href="/todos/@todo.Id" class="btn btn-secondary">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+Undone: @todos.Count(todo => !todo.IsDone)
+
+@code {
+    private List<Models.Todo> todos = new();
+
+    private Models.Todo newTodo = new Models.Todo();
+
+    protected override async Task OnInitializedAsync()
+    {
+        using(var ctx = ContextFactory.CreateDbContext())
+        {
+            todos = await ctx.Todos.ToListAsync();
+        }
+    }
+
+    private async Task ToggleDone(Models.Todo todo, ChangeEventArgs e)
+    {
+        todo.IsDone = Convert.ToBoolean(e.Value);
+        using(var ctx = ContextFactory.CreateDbContext())
+        {
+            ctx.Todos.Update(todo);
+            await ctx.SaveChangesAsync();
+
+            foreach(var t in todos)
+            {
+                if (t.Id == todo.Id)
+                {
+                    t.IsDone = todo.IsDone;
+                    break;
+                }
+            }
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        if (newTodo is null) {
+            return;
+        }
+        using(var ctx = ContextFactory.CreateDbContext())
+        {
+            ctx.Todos.Add(newTodo);
+            await ctx.SaveChangesAsync();
+
+            todos.Add(newTodo);
+            newTodo = new Models.Todo();
+        }
+    }
+}

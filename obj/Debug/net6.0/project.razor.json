@@ -12,39 +12,6 @@
   "ProjectWorkspaceState": {
     "TagHelpers": [
       {
-        "HashCode": 1066669454,
-        "Kind": "Components.Component",
-        "Name": "TodoList.Pages.FetchData",
-        "AssemblyName": "TodoList",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "FetchData"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "TodoList.Pages.FetchData"
-        }
-      },
-      {
-        "HashCode": 1771438422,
-        "Kind": "Components.Component",
-        "Name": "TodoList.Pages.FetchData",
-        "AssemblyName": "TodoList",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "TodoList.Pages.FetchData"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "TodoList.Pages.FetchData",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
         "HashCode": -151610643,
         "Kind": "Components.Component",
         "Name": "TodoList.Pages.Index",
@@ -78,7 +45,7 @@
         }
       },
       {
-        "HashCode": -1120400029,
+        "HashCode": 1929506078,
         "Kind": "Components.Component",
         "Name": "TodoList.Pages.Todo",
         "AssemblyName": "TodoList",
@@ -88,13 +55,23 @@
             "TagName": "Todo"
           }
         ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "Id",
+            "TypeName": "System.String",
+            "Metadata": {
+              "Common.PropertyName": "Id"
+            }
+          }
+        ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
           "Common.TypeName": "TodoList.Pages.Todo"
         }
       },
       {
-        "HashCode": 1250525203,
+        "HashCode": 1135435826,
         "Kind": "Components.Component",
         "Name": "TodoList.Pages.Todo",
         "AssemblyName": "TodoList",
@@ -104,9 +81,52 @@
             "TagName": "TodoList.Pages.Todo"
           }
         ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "Id",
+            "TypeName": "System.String",
+            "Metadata": {
+              "Common.PropertyName": "Id"
+            }
+          }
+        ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
           "Common.TypeName": "TodoList.Pages.Todo",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -2133351692,
+        "Kind": "Components.Component",
+        "Name": "TodoList.Pages.Todos",
+        "AssemblyName": "TodoList",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Todos"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "TodoList.Pages.Todos"
+        }
+      },
+      {
+        "HashCode": -1670238483,
+        "Kind": "Components.Component",
+        "Name": "TodoList.Pages.Todos",
+        "AssemblyName": "TodoList",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "TodoList.Pages.Todos"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "TodoList.Pages.Todos",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -193,6 +213,39 @@
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
           "Common.TypeName": "TodoList.Shared.SurveyPrompt",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": 850563264,
+        "Kind": "Components.Component",
+        "Name": "TodoList.Shared.NavMenu",
+        "AssemblyName": "TodoList",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "NavMenu"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "TodoList.Shared.NavMenu"
+        }
+      },
+      {
+        "HashCode": 1748518721,
+        "Kind": "Components.Component",
+        "Name": "TodoList.Shared.NavMenu",
+        "AssemblyName": "TodoList",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "TodoList.Shared.NavMenu"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "TodoList.Shared.NavMenu",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -289,39 +342,6 @@
           "Runtime.Name": "Components.None",
           "Common.TypeName": "TodoList.Shared.MainLayout.Body",
           "Components.IsSpecialKind": "Components.ChildContent",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
-        "HashCode": 850563264,
-        "Kind": "Components.Component",
-        "Name": "TodoList.Shared.NavMenu",
-        "AssemblyName": "TodoList",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "NavMenu"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "TodoList.Shared.NavMenu"
-        }
-      },
-      {
-        "HashCode": 1748518721,
-        "Kind": "Components.Component",
-        "Name": "TodoList.Shared.NavMenu",
-        "AssemblyName": "TodoList",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "TodoList.Shared.NavMenu"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "TodoList.Shared.NavMenu",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -16617,6 +16637,11 @@
       "FileKind": "componentImport"
     },
     {
+      "FilePath": "/Users/jkeam/dev/projects/dotnet/TodoList/Pages/Todos.razor",
+      "TargetPath": "Pages\\Todos.razor",
+      "FileKind": "component"
+    },
+    {
       "FilePath": "/Users/jkeam/dev/projects/dotnet/TodoList/Pages/Index.razor",
       "TargetPath": "Pages\\Index.razor",
       "FileKind": "component"
@@ -16649,11 +16674,6 @@
     {
       "FilePath": "/Users/jkeam/dev/projects/dotnet/TodoList/Shared/MainLayout.razor",
       "TargetPath": "Shared\\MainLayout.razor",
-      "FileKind": "component"
-    },
-    {
-      "FilePath": "/Users/jkeam/dev/projects/dotnet/TodoList/Pages/FetchData.razor",
-      "TargetPath": "Pages\\FetchData.razor",
       "FileKind": "component"
     },
     {
