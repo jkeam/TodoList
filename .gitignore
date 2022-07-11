@@ -4,6 +4,8 @@ obj/staticwebassets.pack.sentinel
 TodoListTest/bin/
 TodoListTest/obj/Debug/
 TodoListTest/staticwebassets.pack.sentinel
+Debug
+obj
 
 *.swp
 *.*~
