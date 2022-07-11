@@ -38,7 +38,7 @@
                     <input class="form-check-input" checked="@todo.IsDone" type="checkbox" @onchange="@(e => ToggleDone(todo, e))" />
                 </td>
                 <td>
-                    <span class="@((todo.IsDone)? "text-decoration-line-through" : "done")">
+                    <span class="@((todo.IsDone)? "text-decoration-line-through" : "")">
                         @todo.Title
                     </span>
                 </td>

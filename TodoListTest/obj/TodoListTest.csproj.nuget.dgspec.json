@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "/Users/jkeam/dev/projects/dotnet/TodoList/TodoList.csproj": {}
+    "/Users/jkeam/dev/projects/dotnet/TodoList/TodoListTest/TodoListTest.csproj": {}
   },
   "projects": {
     "/Users/jkeam/dev/projects/dotnet/TodoList/TodoList.csproj": {
@@ -81,6 +81,88 @@
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
             },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.301/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/jkeam/dev/projects/dotnet/TodoList/TodoListTest/TodoListTest.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/jkeam/dev/projects/dotnet/TodoList/TodoListTest/TodoListTest.csproj",
+        "projectName": "TodoListTest",
+        "projectPath": "/Users/jkeam/dev/projects/dotnet/TodoList/TodoListTest/TodoListTest.csproj",
+        "packagesPath": "/Users/jkeam/.nuget/packages/",
+        "outputPath": "/Users/jkeam/dev/projects/dotnet/TodoList/TodoListTest/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/jkeam/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/jkeam/dev/projects/dotnet/TodoList/TodoList.csproj": {
+                "projectPath": "/Users/jkeam/dev/projects/dotnet/TodoList/TodoList.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.1.0, )"
+            },
+            "NUnit": {
+              "target": "Package",
+              "version": "[3.13.3, )"
+            },
+            "NUnit.Analyzers": {
+              "target": "Package",
+              "version": "[3.3.0, )"
+            },
+            "NUnit3TestAdapter": {
+              "target": "Package",
+              "version": "[4.2.1, )"
+            },
+            "bunit.web": {
+              "target": "Package",
+              "version": "[1.9.8, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
