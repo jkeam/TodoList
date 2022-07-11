@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TodoList.Data;
 using Microsoft.Extensions.DependencyInjection;
+using Bunit;
 
 namespace TodoList.TodoListTest;
 
@@ -51,7 +52,7 @@ public class Tests
             {
                 // verify data is in database
                 var todos = context.Todos.ToList();
-                Assert.AreEqual(todos.First().Title, "Brush Teeth");
+                Assert.AreEqual("Brush Teeth", todos.First().Title);
 
                 // verify it rendered on the page
                 var component = testContext.RenderComponent<TodoList.Pages.Todos>();
@@ -84,8 +85,15 @@ public class Tests
             var service = scope.ServiceProvider.GetRequiredService<IDbContextFactory<DatabaseContext>>();
             using (var context = service.CreateDbContext())
             {
-                // TODO
-                Assert.True(true);
+                Assert.AreEqual(1, context.Todos.ToList().Count);
+                var component = testContext.RenderComponent<TodoList.Pages.Todos>();
+                var inputField = component.Find("input");
+                inputField.Change("Buy Cheese");
+                component.Find("button[type=submit].new-todo").Click();
+
+                var todos = context.Todos.ToList();
+                Assert.AreEqual(2, todos.Count);
+                Assert.AreEqual("Buy Cheese", todos.Last().Title);
             }
         }
     }
