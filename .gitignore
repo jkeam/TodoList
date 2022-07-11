@@ -2,7 +2,7 @@ bin/Debug
 obj/Debug
 obj/staticwebassets.pack.sentinel
 TodoListTest/bin/
-TodoListTest/obj/Debug/
+TodoListTest/obj
 TodoListTest/staticwebassets.pack.sentinel
 Debug
 obj
