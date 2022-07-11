@@ -9,8 +9,8 @@ public class Tests
 {
     private Bunit.TestContext testContext = null!;
 
-    [OneTimeSetUp]
-    public void StaticSetup()
+    [SetUp]
+    public void Setup()
     {
         testContext = new Bunit.TestContext();
 
@@ -29,9 +29,22 @@ public class Tests
         }
     }
 
-    [OneTimeTearDown]
-    public void StaticTeardown()
+    [TearDown]
+    public void Teardown()
     {
+        // Clear test database
+        using (var scope = testContext.Services.CreateScope())
+        {
+            var service = scope.ServiceProvider.GetRequiredService<IDbContextFactory<DatabaseContext>>();
+            using (var context = service.CreateDbContext())
+            {
+                foreach (var todo in context.Todos.ToList())
+                {
+                    context.Todos.Remove(todo);
+                }
+                context.SaveChanges();
+            }
+        }
         testContext.Dispose();
     }
 
