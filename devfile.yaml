@@ -64,6 +64,16 @@ components:
           value: "Data Source=.;Initial Catalog=TodoApp;User ID=sa;Password=Password_123"
         - name: "APP_NAME"
           value: "TodoList"
+  - name: adminer
+    container:
+      image: quay.io/official-images/adminer@sha256:44397ff6d1367c0bd1293206ad08f21d4146cca9e38698ea7c2fe0bedda9f25a
+      memoryLimit: 1Gi
+      endpoints:
+        - name: dbclient
+          targetPort: 8080
+          exposure: public
+          protocol: http
+          secure: false
   - name: mssql
     container:
       image: mcr.microsoft.com/mssql/server:2019-latest
@@ -80,13 +90,9 @@ components:
           targetPort: 1433
           exposure: public
           secure: false
-  - name: adminer
-    container:
-      image: quay.io/official-images/adminer@sha256:44397ff6d1367c0bd1293206ad08f21d4146cca9e38698ea7c2fe0bedda9f25a
-      memoryLimit: 1Gi
-      endpoints:
-        - name: dbclient
-          targetPort: 8080
-          exposure: public
-          protocol: http
-          secure: false
+      volumeMounts:
+        - name: dbdata
+          path: /var/opt/mssql
+  - name: dbdata
+    volume:
+      size: 2Gi
