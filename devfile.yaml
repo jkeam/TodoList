@@ -1,6 +1,6 @@
 schemaVersion: 2.1.0
 metadata:
-  generateName: todolist-usertlc
+  generateName: todolist-devspace-
 projects:
   - name: todolist
     git:
