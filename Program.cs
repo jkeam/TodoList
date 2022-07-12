@@ -1,20 +1,32 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using TodoList.Data;
 using Microsoft.EntityFrameworkCore;
 
+string GetConfigValue(IConfigurationSection section, string keyName, string defaultValue)
+{
+    var environmentValue = Environment.GetEnvironmentVariable(keyName);
+    if (!String.IsNullOrEmpty(environmentValue))
+    {
+        return environmentValue;
+    }
+
+    return section.GetValue<string>(keyName, defaultValue);
+}
+
 var builder = WebApplication.CreateBuilder(args);
+var section = builder.Configuration.GetSection("AppConfig");
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddDbContextFactory<DatabaseContext>(options =>
-  options.UseSqlServer(builder.Configuration.GetConnectionString("DB_URL")));
+  options.UseSqlServer(GetConfigValue(section, "DB_URL", "")));
+builder.Services.AddSingleton<Config>(
+    new Config(GetConfigValue(section, "APP_NAME", "TodoList")));
 
 var app = builder.Build();
 
 // Migration
-var migrate = Environment.GetEnvironmentVariable("MIGRATION");
+var migrate = GetConfigValue(section, "MIGRATION", "false");
 if (migrate != null && migrate.ToLower() == "true") {
     using (var scope = app.Services.CreateScope())
     {
