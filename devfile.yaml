@@ -50,7 +50,7 @@ components:
     container:
       image: registry.redhat.io/codeready-workspaces/stacks-dotnet-rhel8@sha256:1d4f64bdbe54ce16504555fb2665c6b52151d452ab649a8e0ef00308a63645d4
       memoryLimit: 4Gi
-      cpuLimit: 8000m
+      cpuLimit: 4000m
       mountSources: true
       command: ['sleep', 'infinity']
       endpoints:
