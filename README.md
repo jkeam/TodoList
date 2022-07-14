@@ -11,14 +11,17 @@ A simple ASP.NET Core 6 Blazor todo application.
 dotnet restore
 ```
 
+## Clean
+```
+dotnet clean
+```
+
 ## Build
 ```
-# optionally dotnet clean
 dotnet build
 ```
 
 ## Test
 ```
-# optionally dotnet clean
 dotnet test
 ```
