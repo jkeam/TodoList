@@ -24,25 +24,25 @@ commands:
   - id: build
     exec:
       component: dotnet
-      commandLine: dotnet clean && dotnet build
+      commandLine: dotnet build
       workingDir: /projects/todolist
       label: Run build
   - id: test
     exec:
       component: dotnet
-      commandLine: dotnet clean && dotnet test
+      commandLine: dotnet test
       workingDir: /projects/todolist
       label: Run tests
   - id: run
     exec:
       component: dotnet
-      commandLine: dotnet clean && dotnet watch run
+      commandLine: dotnet watch run
       workingDir: /projects/todolist
       label: Start application in watch mode
   - id: migratedb
     exec:
       component: dotnet
-      commandLine: dotnet clean && MIGRATION=true dotnet run
+      commandLine: MIGRATION=true dotnet run
       workingDir: /projects/todolist
       label: Migrate database
 components:
