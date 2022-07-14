@@ -95,4 +95,4 @@ components:
           path: /var/opt/mssql
   - name: dbdata
     volume:
-      size: 2Gi
+      size: 1Gi
