@@ -44,3 +44,6 @@ msbuild.wrn
 
 # Visual Studio 2015
 .vs/
+
+# Git config
+.git-credentials
