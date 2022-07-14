@@ -5,7 +5,7 @@ projects:
   - name: todolist
     git:
       remotes:
-        origin: 'https://github.com/jkeam/todolist.git'
+        origin: "https://github.com/jkeam/todolist.git"
       checkoutFrom:
         revision: main
 commands:
@@ -52,7 +52,7 @@ components:
       memoryLimit: 4Gi
       cpuLimit: 4000m
       mountSources: true
-      command: ['sleep', 'infinity']
+      command: ["sleep", "infinity"]
       endpoints:
         - name: web
           targetPort: 5212
@@ -68,6 +68,11 @@ components:
     container:
       image: quay.io/official-images/adminer@sha256:44397ff6d1367c0bd1293206ad08f21d4146cca9e38698ea7c2fe0bedda9f25a
       memoryLimit: 1Gi
+      env:
+        - name: "ADMINER_DEFAULT_SERVER"
+          value: "localhost"
+        - name: "ADMINER_DESIGN"
+          value: "nette"
       endpoints:
         - name: dbclient
           targetPort: 8080
@@ -88,7 +93,7 @@ components:
       endpoints:
         - name: db
           targetPort: 1433
-          exposure: public
+          exposure: none
           secure: false
       volumeMounts:
         - name: dbdata
