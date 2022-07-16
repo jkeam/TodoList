@@ -48,7 +48,7 @@ commands:
 components:
   - name: dotnet
     container:
-      image: registry.redhat.io/codeready-workspaces/stacks-dotnet-rhel8@sha256:1d4f64bdbe54ce16504555fb2665c6b52151d452ab649a8e0ef00308a63645d4
+      image: 'registry.redhat.io/devspaces/udi-rhel8@sha256:b9553a59c57b10d7e0fae9fc9a96f258d7b0c47f1d347054aab90bf25bb1e4ce'
       memoryLimit: 4Gi
       cpuLimit: 4000m
       mountSources: true
