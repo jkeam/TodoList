@@ -1,5 +1,5 @@
 # TodoList
-A simple ASP.NET Core 6 Blazor todo application.
+A simple ASP.NET Core 6 Blazor TODO application.
 
 ## Prerequisites
 1.  `dotnet` 6 CLI installed.  CLI is included with .NET Core, so make sure that is [installed](https://docs.microsoft.com/en-us/dotnet/core/install/)
