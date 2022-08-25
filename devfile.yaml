@@ -47,6 +47,10 @@ commands:
       label: Migrate database
 components:
   - name: dotnet
+    attributes:
+      che-theia.eclipse.org/vscode-extensions:
+        - 'http://plugin-registry.openshift-devspaces.svc:8080/resources/github_com/redhat-developer/omnisharp-theia-plugin/releases/download/v0_0_6/omnisharp_theia_plugin.theia'
+        - 'http://plugin-registry.openshift-devspaces.svc:8080/resources/github_com/redhat-developer/netcoredbg-theia-plugin/releases/download/v0_0_3/netcoredbg_theia_plugin.theia'
     container:
       image: 'registry.redhat.io/devspaces/udi-rhel8@sha256:d55549aad15742f6f7310da0c7abc1e65dd5d3ad2e3efb8fbf414cf91b9efac7'
       memoryLimit: 4Gi
