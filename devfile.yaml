@@ -64,10 +64,6 @@ components:
           value: "Data Source=.;Initial Catalog=TodoApp;User ID=sa;Password=Password_123"
         - name: "APP_NAME"
           value: "TodoList"
-    attributes:
-      che-theia.eclipse.org/vscode-extensions:
-        - 'http://plugin-registry.openshift-devspaces.svc:8080/resources/github_com/redhat-developer/omnisharp-theia-plugin/releases/download/v0_0_6/omnisharp_theia_plugin.theia'
-        - 'http://plugin-registry.openshift-devspaces.svc:8080/resources/github_com/redhat-developer/netcoredbg-theia-plugin/releases/download/v0_0_3/netcoredbg_theia_plugin.theia'
   - name: adminer
     container:
       image: quay.io/official-images/adminer@sha256:44397ff6d1367c0bd1293206ad08f21d4146cca9e38698ea7c2fe0bedda9f25a
