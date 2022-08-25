@@ -1,0 +1,128 @@
+apiVersion: 1.0.0
+metadata:
+  generateName: todolist-
+projects:
+  - name: todolist
+    source:
+      type: git
+      location: "https://github.com/jkeam/todolist.git"
+components:
+  - type: chePlugin
+    alias: omnisharp
+    id: redhat-developer/che-omnisharp-plugin/latest
+  - type: chePlugin
+    alias: netcoredbg
+    id: redhat-developer/netcoredbg-theia-plugin/latest
+  - type: dockerimage
+    alias: dotnet
+    image: 'registry.redhat.io/codeready-workspaces/stacks-dotnet-rhel8:latest'
+    memoryLimit: 2Gi
+    env:
+      - name: "ACCEPT_EULA"
+        value: "Y"
+      - name: "SA_PASSWORD"
+        value: "Password_123"
+      - name: "MSSQL_PID"
+        value: "Express"
+    endpoints:
+      - name: web
+        port: 5212
+        attributes:
+          protocol: http
+          secure: 'false'
+          public: 'true'
+          discoverable: 'true'
+  - type: dockerimage
+    alias: adminer
+    image: quay.io/official-images/adminer@sha256:44397ff6d1367c0bd1293206ad08f21d4146cca9e38698ea7c2fe0bedda9f25a
+    memoryLimit: 1Gi
+    env:
+      - name: "ADMINER_DEFAULT_SERVER"
+        value: "localhost"
+      - name: "ADMINER_DESIGN"
+        value: "nette"
+    endpoints:
+      - name: dbclient
+        port: 8080
+        attributes:
+          protocol: http
+          secure: 'false'
+          public: 'true'
+          discoverable: 'true'
+  - type: dockerimage
+    alias: mssql
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    memoryLimit: 2Gi
+    env:
+      - name: "ACCEPT_EULA"
+        value: "Y"
+      - name: "SA_PASSWORD"
+        value: "Password_123"
+      - name: "MSSQL_PID"
+        value: "Express"
+    endpoints:
+      - name: db
+        port: 1433
+        attributes:
+          secure: 'false'
+          public: 'false'
+          discoverable: 'true'
+    volumes:
+      - name: dbdata
+        containerPath: /var/opt/mssql
+commands:
+  - name: 1. Update dependencies
+    actions:
+      - type: exec
+        component: dotnet
+        command: dotnet restore
+        workdir: '${CHE_PROJECTS_ROOT}/todolist'
+  - name: 2. Build
+    actions:
+      - type: exec
+        component: dotnet
+        command: dotnet build
+        workdir: '${CHE_PROJECTS_ROOT}/todolist'
+  - name: 3. Test
+    actions:
+      - type: exec
+        component: dotnet
+        command: dotnet test
+        workdir: '${CHE_PROJECTS_ROOT}/todolist'
+  - name: 4. Migrate
+    actions:
+      - type: exec
+        component: dotnet
+        command: MIGRATION=true dotnet run
+        workdir: '${CHE_PROJECTS_ROOT}/todolist'
+  - name: 5. Run
+    actions:
+      - type: exec
+        component: dotnet
+        command: dotnet run
+        workdir: '${CHE_PROJECTS_ROOT}/todolist'
+  - name: 6. Watch
+    actions:
+      - type: exec
+        component: dotnet
+        command: dotnet watch run
+        workdir: '${CHE_PROJECTS_ROOT}/todolist'
+  - name: Launch .net web application in debug mode
+    actions:
+      - type: vscode-launch
+        referenceContent: |
+          {
+            "version": "0.2.0",
+              "configurations": [
+                 {
+                    "type": "netcoredbg",
+                    "request": "launch",
+                    "program": "/projects/todolist/bin/Debug/netcoreapp3.1/web.dll",
+                    "args": [],
+                    "name": ".NET Core Launch (console)",
+                    "stopAtEntry": true,
+                    "preLaunchTask": "2. Build",
+                    "console": "internalConsole"
+                  }
+              ]
+          }
