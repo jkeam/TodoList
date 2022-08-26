@@ -1,0 +1,140 @@
+schemaVersion: 2.1.0
+metadata:
+  generateName: todolist-devspace-
+attributes:
+  .che/che-theia-plugins.yaml: |
+    - id: redhat-developer/che-omnisharp-plugin/latest
+      override:
+        sidecar:
+          name: omnisharp
+    - id: redhat-developer/netcoredbg-theia-plugin/latest
+      override:
+        sidecar:
+          name: netcoredbg
+  .vscode/extensions.json: |-
+    {
+      "recommendations": [
+        "redhat-developer/che-omnisharp-plugin",
+        "redhat-developer/netcoredbg-theia-plugin"
+      ]
+    }
+  .vscode/launch.json: |-
+    {
+      "version": "0.2.0",
+        "configurations": [
+           {
+              "type": "netcoredbg",
+              "request": "launch",
+              "program": "/projects/todolist/bin/Debug/netcoreapp3.1/web.dll",
+              "args": [],
+              "name": ".NET Core Launch (console)",
+              "stopAtEntry": true,
+              "preLaunchTask": "build",
+              "console": "internalConsole"
+            }
+        ]
+    }
+projects:
+  - name: todolist
+    git:
+      remotes:
+        origin: "https://github.com/jkeam/todolist.git"
+      checkoutFrom:
+        revision: main
+commands:
+  - id: restore
+    exec:
+      component: dotnet
+      commandLine: dotnet restore
+      workingDir: /projects/todolist
+      label: Restore project
+  - id: clean
+    exec:
+      component: dotnet
+      commandLine: dotnet clean
+      workingDir: /projects/todolist
+      label: Clean project
+  - id: build
+    exec:
+      component: dotnet
+      commandLine: dotnet build
+      workingDir: /projects/todolist
+      label: Run build
+  - id: test
+    exec:
+      component: dotnet
+      commandLine: dotnet test
+      workingDir: /projects/todolist
+      label: Run tests
+  - id: run
+    exec:
+      component: dotnet
+      commandLine: dotnet watch run
+      workingDir: /projects/todolist
+      label: Start application in watch mode
+  - id: migratedb
+    exec:
+      component: dotnet
+      commandLine: MIGRATION=true dotnet run
+      workingDir: /projects/todolist
+      label: Migrate database
+components:
+  - name: dotnet
+    attributes:
+      che-theia.eclipse.org/vscode-extensions:
+        - 'http://plugin-registry.openshift-devspaces.svc:8080/resources/github_com/redhat-developer/omnisharp-theia-plugin/releases/download/v0_0_6/omnisharp_theia_plugin.theia'
+        - 'http://plugin-registry.openshift-devspaces.svc:8080/resources/github_com/redhat-developer/netcoredbg-theia-plugin/releases/download/v0_0_3/netcoredbg_theia_plugin.theia'
+    container:
+      image: 'registry.redhat.io/devspaces/udi-rhel8@sha256:d55549aad15742f6f7310da0c7abc1e65dd5d3ad2e3efb8fbf414cf91b9efac7'
+      memoryLimit: 4Gi
+      cpuLimit: 4000m
+      mountSources: true
+      command: ["sleep", "infinity"]
+      endpoints:
+        - name: web
+          targetPort: 5212
+          exposure: public
+          protocol: http
+          secure: false
+      env:
+        - name: "DB_URL"
+          value: "Data Source=.;Initial Catalog=TodoApp;User ID=sa;Password=Password_123"
+        - name: "APP_NAME"
+          value: "TodoList"
+  - name: adminer
+    container:
+      image: quay.io/official-images/adminer@sha256:44397ff6d1367c0bd1293206ad08f21d4146cca9e38698ea7c2fe0bedda9f25a
+      memoryLimit: 1Gi
+      env:
+        - name: "ADMINER_DEFAULT_SERVER"
+          value: "localhost"
+        - name: "ADMINER_DESIGN"
+          value: "nette"
+      endpoints:
+        - name: dbclient
+          targetPort: 8080
+          exposure: public
+          protocol: http
+          secure: false
+  - name: mssql
+    container:
+      image: mcr.microsoft.com/mssql/server:2019-latest
+      memoryLimit: 2Gi
+      env:
+        - name: "ACCEPT_EULA"
+          value: "Y"
+        - name: "SA_PASSWORD"
+          value: "Password_123"
+        - name: "MSSQL_PID"
+          value: "Express"
+      endpoints:
+        - name: db
+          targetPort: 1433
+          exposure: none
+          secure: false
+      volumeMounts:
+        - name: dbdata
+          path: /var/opt/mssql
+  - name: dbdata
+    volume:
+      size: 1Gi
