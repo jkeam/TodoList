@@ -2,15 +2,13 @@ schemaVersion: 2.1.0
 metadata:
   generateName: todolist-devspace-
 attributes:
-  .che/che-theia-plugins.yaml: |
-    - id: redhat-developer/che-omnisharp-plugin/latest
-      override:
-        sidecar:
-          name: omnisharp
-    - id: redhat-developer/netcoredbg-theia-plugin/latest
-      override:
-        sidecar:
-          name: netcoredbg
+  .vscode/extensions.json: |
+    {
+      "recommendations": [
+        "redhat-developer.che-omnisharp-plugin",
+        "redhat-developer.netcoredbg-theia-plugin"
+      ]
+    }
 projects:
   - name: todolist
     git:
