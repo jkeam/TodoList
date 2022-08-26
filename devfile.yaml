@@ -11,14 +11,14 @@ attributes:
       override:
         sidecar:
           name: netcoredbg
-  .vscode/extensions.json: |-
+  .vscode/extensions.json: |
     {
       "recommendations": [
-        "redhat-developer/che-omnisharp-plugin",
-        "redhat-developer/netcoredbg-theia-plugin"
+        "redhat-developer.che-omnisharp-plugin",
+        "redhat-developer.netcoredbg-theia-plugin"
       ]
     }
-  .vscode/launch.json: |-
+  .vscode/launch.json: |
     {
       "version": "0.2.0",
         "configurations": [
