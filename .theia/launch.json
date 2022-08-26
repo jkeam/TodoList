@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+    "configurations": [
+       {
+          "type": "netcoredbg",
+          "request": "launch",
+          "program": "/projects/todolist/bin/Debug/netcoreapp3.1/web.dll",
+          "args": [],
+          "name": ".NET Core Launch (console)",
+          "stopAtEntry": true,
+          "preLaunchTask": "build",
+          "console": "internalConsole"
+        }
+    ]
+}

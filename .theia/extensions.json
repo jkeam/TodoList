@@ -1,0 +1,6 @@
+{
+  "recommendations": [
+    "redhat-developer/che-omnisharp-plugin",
+    "redhat-developer/netcoredbg-theia-plugin"
+  ]
+}
