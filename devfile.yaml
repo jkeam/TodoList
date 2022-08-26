@@ -3,7 +3,7 @@ metadata:
   generateName: todolist-devspace-
 attributes:
   .che/che-theia-plugins.yaml: |
-    - id: redhat-developer/omnisharp-theia-plugin/latest
+    - id: redhat-developer/che-omnisharp-plugin/latest
       override:
         sidecar:
           name: omnisharp
@@ -14,7 +14,7 @@ attributes:
   .vscode/extensions.json: |
     {
       "recommendations": [
-        "redhat-developer.omnisharp-theia-plugin",
+        "redhat-developer.che-omnisharp-plugin",
         "redhat-developer.netcoredbg-theia-plugin"
       ]
     }
