@@ -2,12 +2,37 @@ schemaVersion: 2.1.0
 metadata:
   generateName: todolist-devspace-
 attributes:
+  .che/che-theia-plugins.yaml: |
+    - id: redhat-developer/omnisharp-theia-plugin/latest
+      override:
+        sidecar:
+          name: omnisharp
+    - id: redhat-developer/netcoredbg-theia-plugin/latest
+      override:
+        sidecar:
+          name: netcoredbg
   .vscode/extensions.json: |
     {
       "recommendations": [
-        "redhat-developer.che-omnisharp-plugin",
+        "redhat-developer.omnisharp-theia-plugin",
         "redhat-developer.netcoredbg-theia-plugin"
       ]
+    }
+  .vscode/launch.json: |
+    {
+      "version": "0.2.0",
+        "configurations": [
+           {
+              "type": "netcoredbg",
+              "request": "launch",
+              "program": "/projects/todolist/bin/Debug/netcoreapp3.1/web.dll",
+              "args": [],
+              "name": ".NET Core Launch (console)",
+              "stopAtEntry": true,
+              "preLaunchTask": "build",
+              "console": "internalConsole"
+            }
+        ]
     }
 projects:
   - name: todolist
