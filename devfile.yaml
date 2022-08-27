@@ -1,5 +1,14 @@
 schemaVersion: 2.2.0
 metadata:
+  description: .Net TodoList
+  displayName: todolist
+  icon: https://github.com/dotnet/brand/raw/main/logo/dotnet-logo.png
+  language: dotnet
+  name: todolist
+  projectType: dotnet
+  tags:
+  - dotnet
+  version: 1.0.0
   generateName: todolist-devspace-
 projects:
   - name: todolist
@@ -27,6 +36,9 @@ commands:
       commandLine: dotnet build
       workingDir: /projects/todolist
       label: Run build
+      group:
+        isDefault: true
+        kind: build
   - id: test
     exec:
       component: dotnet
@@ -39,6 +51,9 @@ commands:
       commandLine: dotnet watch run
       workingDir: /projects/todolist
       label: Start application in watch mode
+      group:
+        isDefault: true
+        kind: run
   - id: migratedb
     exec:
       component: dotnet
